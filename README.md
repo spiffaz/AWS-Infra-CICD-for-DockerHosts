@@ -129,4 +129,20 @@ The image is pulled from the repository and deployed directly to the AWS instanc
 3. **Enable the GitHub Action from the Actions tab**
 4. **Make a change to the configuration. The pipeline will be triggered on push**
 
+### Possible Improvements
+
+Architecture
+1. Implement WAF in front of the load balancer. Load balancers should ideally not be exposed.
+2. Implement encryption in transit by using HTTPS on the load balancer.
+3. Implement CICD and tests for infrastructure
+4. Use AWS organizations or separate accounts for dev and prod
+5. Properly implement Pre-commit hooks.
+
+CICD
+1. Implement branching strategies.
+2. Implement more tests outside the maintainers tests.
+3. Enable notifications to inform on status and share relevant artefacts.
+4. Implement a deployment strategy other than rolling updates.
+5. Implement automated rollbacks in the case where a rollback is needed.
+
 Feel free to reach out if you have any questions or need further assistance!
