@@ -11,6 +11,14 @@ For the application CICD, I used GitHub Actions, Dockerhub for the container reg
 - `modules/baseResources`: Terraform module to create VPC, subnets, security groups, and other foundational resources.
 - `modules/appResources`: Terraform module to deploy an AWS application, including a load balancer and autoscaling group.
 
+The following were adopted as part of the infrastructure design:
+• High availability - Auto scaling groups were used to ensure high availability.
+• Fault tolerance - Scaling policies were setup to ensure that the system is fault tolerant.
+• Load balancing - An application load balancer was used to distribute traffic to members of the auto-scaling group.
+• Network Security (security groups/Firewall or ACLs) - Best practices were followed by limiting access to security groups. Also went a step further to implement security group chaining to implement least privilege access.
+• Encryption of data in transit and at rest (If applicatble) - Data was encrypted at rest on the EBS volumes attached to the instances. Also, all Cloudwatch logs were encrypted at rest.
+• Backup and recovery mechanisms - A third workspace can be created in a different region (DR) with the same or a scaled-down architecture.
+
 ### CI/CD Integration
 
 ### Application Repository and CI/CD Pipeline
