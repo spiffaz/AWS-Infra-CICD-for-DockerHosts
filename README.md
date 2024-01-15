@@ -144,5 +144,6 @@ CICD
 3. Enable notifications to inform on status and share relevant artefacts.
 4. Implement a deployment strategy other than rolling updates.
 5. Implement automated rollbacks in the case where a rollback is needed.
-
+6. Use native AWS CICD tools instead of session manager or go the route of ssh keys when inside the AWS environment.
+   
 Feel free to reach out if you have any questions or need further assistance!
