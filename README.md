@@ -14,10 +14,15 @@ For the application CICD, I used GitHub Actions, Dockerhub for the container reg
 The following were adopted as part of the infrastructure design:
 
 • High availability - Auto scaling groups were used to ensure high availability.
+
 • Fault tolerance - Scaling policies were setup to ensure that the system is fault tolerant.
+
 • Load balancing - An application load balancer was used to distribute traffic to members of the auto-scaling group.
+
 • Network Security (security groups/Firewall or ACLs) - Best practices were followed by limiting access to security groups. Also went a step further to implement security group chaining to implement least privilege access.
+
 • Encryption of data in transit and at rest (If applicatble) - Data was encrypted at rest on the EBS volumes attached to the instances. Also, all Cloudwatch logs were encrypted at rest.
+
 • Backup and recovery mechanisms - A third workspace can be created in a different region (DR) with the same or a scaled-down architecture.
 
 ### CI/CD Integration
@@ -44,6 +49,13 @@ Monitoring was implemented on both the infrastructure and application level.
 Cloudwatch logs were implemented on the VPC to capture VPC flow logs.
 Elastic cloud is used to capture and visualize logs and metrics from the EC2 hosts, it is also used to capture Load balancer, NAT and VPC logs from Cloudwatch.
 Application logs are also captured on Elastic.
+
+![image](https://github.com/spiffaz/AWS-Infra-CICD-for-DockerHosts/assets/35563797/d7231b51-9c5a-4d6d-aeb1-0147cd563f62)
+
+![image](https://github.com/spiffaz/AWS-Infra-CICD-for-DockerHosts/assets/35563797/9402e93a-80d3-4855-91c2-daa6674b3ba4)
+
+![image](https://github.com/spiffaz/AWS-Infra-CICD-for-DockerHosts/assets/35563797/94237002-0415-4cbf-bb82-b4aaf51ec671)
+
 
 ## How to Use
 
@@ -108,5 +120,13 @@ I chose to build the image from source as the beginning of the CI process, I ski
 There is also an image scan before the image is pushed to the container registry.
 The image is pulled from the repository and deployed directly to the AWS instances using AWS Session manager. This will reduce the amount of keys that needs to be managed and is also secure.
 
+### Application CICD steps
+
+1. **Clone/Fork the GitHub Repository:**
+2. **Create the secrets as GitHub Secrets:**
+![image](https://github.com/spiffaz/AWS-Infra-CICD-for-DockerHosts/assets/35563797/b7ca3f5b-333a-4939-806f-bc831125d0c4)
+
+3. **Enable the GitHub Action from the Actions tab**
+4. **Make a change to the configuration. The pipeline will be triggered on push**
 
 Feel free to reach out if you have any questions or need further assistance!
