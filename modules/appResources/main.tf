@@ -164,7 +164,7 @@ EOF
 }
 
 resource "aws_iam_instance_profile" "ssm_instance_profile" {
-  name = "SSMInstanceProfile"
+  name = "${terraform.workspace}-SSMInstanceProfile"
   role = aws_iam_role.ssm_managed_instance_core.name
 }
 
