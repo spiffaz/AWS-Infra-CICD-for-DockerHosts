@@ -12,6 +12,7 @@ For the application CICD, I used GitHub Actions, Dockerhub for the container reg
 - `modules/appResources`: Terraform module to deploy an AWS application, including a load balancer and autoscaling group.
 
 The following were adopted as part of the infrastructure design:
+
 • High availability - Auto scaling groups were used to ensure high availability.
 • Fault tolerance - Scaling policies were setup to ensure that the system is fault tolerant.
 • Load balancing - An application load balancer was used to distribute traffic to members of the auto-scaling group.
@@ -25,9 +26,24 @@ The following were adopted as part of the infrastructure design:
 
 Following best practices, the infrastructure repo is separated from the application repo, including the CI/CD pipeline. The application repo can be found at [https://github.com/spiffaz/http-echo](https://github.com/spiffaz/http-echo), and the CI/CD pipeline can be found at `.github/workflows/build.yml`.
 
+A GitHub Action was already in place for the build and unit testing of the project by the maintainers. The pipeline ended at the production of artefacts.
+
+The GitHub action was modified to include:
+
+• Scans & checks
+• Deployment to staging environment.
+• Automated deployment to production environment
+
 ## SSM Installation
 
 A curated image is being used to reduce the setup time of the autoscaling groups. The base image has Docker and the Elastic agent installed for monitoring. The user data file for setting up the image is included in the `config.sh` file.
+
+### Application and Infrastructure monitoring
+
+Monitoring was implemented on both the infrastructure and application level.
+Cloudwatch logs were implemented on the VPC to capture VPC flow logs.
+Elastic cloud is used to capture and visualize logs and metrics from the EC2 hosts, it is also used to capture Load balancer, NAT and VPC logs from Cloudwatch.
+Application logs are also captured on Elastic.
 
 ## How to Use
 
