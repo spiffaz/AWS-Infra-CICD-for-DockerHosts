@@ -99,7 +99,7 @@ resource "aws_lb_listener" "public_lb" {
 
 # IAM configuration to create and attach role to ASG
 resource "aws_iam_role" "ssm_full_access" {
-  name = "SSMFullAccessRole"
+  name = "${terraform.workspace}-SSMFullAccessRole"
   assume_role_policy = jsonencode({
     Version = "2012-10-17",
     Statement = [{
@@ -130,7 +130,7 @@ EOF
 }
 
 resource "aws_iam_role" "ssm_managed_instance_core" {
-  name = "SSMManagedInstanceCoreRole"
+  name = "${terraform.workspace}-SSMManagedInstanceCoreRole"
   assume_role_policy = jsonencode({
     Version = "2012-10-17",
     Statement = [{
