@@ -1,1 +1,3 @@
-TF_API_TOKEN  = "Xz0rdu5TWiPbEQ.atlasv1.Xn4zZmq7r7aTIOF0KOjtQZeivXhcgUbxBXP3wEZnKXhKBVJUoptD8J1c97vs2k3ijaM"
+TF_API_TOKEN  = ""
+organization  = "spiff-cicd"
+workspace_tag = "dev"
